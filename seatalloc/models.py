@@ -6,19 +6,16 @@ from django.template.defaultfilters import slugify
 
 class Candidate(models.Model):
     roll = models.CharField(max_length=9 , unique = True)#CharField?
-    cat = models.IntegerField(default=0)
-    ds = models.BooleanField(default=False)
+    cat = models.CharField(default="GE")
     pd = models.BooleanField(default=False)
-    #slug = models.SlugField(unique=True)
+    
     # program=models.Field(max_length=4,min_length=4)
 #     institue=models.CharField(max_length=1)
     
     def __str__(self):
         return self.roll
         
-    #def save(self, *args, **kwargs):
-     #           self.slug = slugify(self.name)
-      #          super(Candidate, self).save(*args, **kwargs)
+   
 
     
 class Preference(models.Model):
@@ -28,36 +25,30 @@ class Preference(models.Model):
     class Meta:
          unique_together = (("candidate","program"))
 ################################################################
-#tut models below
-# Create your models here.
-class Category(models.Model):
-    name = models.CharField(max_length=128, unique=True)
+
+class Program(models.Model):
+    institute=models.CharField(max_length=128)
+    department=models.CharField(max_length=128)
+    code1=models.CharField(max_length=5)
+    #cat=models.IntegerField()
+    openrank1=models.IntegerField()
+    closerank1=models.IntegerField()
+    openrank2=models.IntegerField()
+    closerank2=models.IntegerField()
+    openrank3=models.IntegerField()
+    closerank3=models.IntegerField()
+    openrank4=models.IntegerField()
+    closerank4=models.IntegerField()
+    openrank5=models.IntegerField()
+    closerank5=models.IntegerField()
+    openrank6=models.IntegerField()
+    closerank6=models.IntegerField()
+    openrank7=models.IntegerField()
+    closerank7=models.IntegerField()
+    openrank8=models.IntegerField()
+    closerank8=models.IntegerField()
+    
+    
+     
     def __str__(self):
-        return self.name
-
-class Page(models.Model):
-    category = models.ForeignKey(Category)
-    title = models.CharField(max_length=128)
-    url = models.URLField()
-    views = models.IntegerField(default=0)
-
-    def __unicode__(self):
-        return self.title
-
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-    def __str__(self):              # __unicode__ on Python 2
-        return self.question_text
-    def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-    def __str__(self):              # __unicode__ on Python 2
-        return self.choice_text
-# class Rank(models.Model):
-#     code=models.CharField
+        return self.department
