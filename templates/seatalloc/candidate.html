@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rango</title>
+    </head>
+
+    <body>
+        <h1>{{ candidate_roll }}</h1>
+        {% if candidate %}
+            {% if preferences %}
+            <ul>
+                {% for preference in preferences %}
+                <li><a href="{{ prefernce.url }}">{{ prefernce.title }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No preference currently in candidate.</strong>
+            {% endif %}
+        {% else %}
+            The specified candidate {{ candidate_roll }} does not exist!
+        {% endif %}
+    </body>
+</html>
